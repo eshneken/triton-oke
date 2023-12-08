@@ -22,7 +22,7 @@ You will need to create an OKE cluster with managed nodes that has at least 1 CP
 
 Your GPU nodepool will need to have the k8s label *nvidia.com/gpu = true* set on it to allow for proper scheduling of NVIDIA pods.
 
-The *terraform* subdirectory in this repo has a sample terraform script which creates the following:
+The [terraform*\](terraform) subdirectory in this repo has a sample terraform script which creates the following:
 1. VCN with all required security lists, routing, and gateways
 1. OKE managed cluster with a public endpoint and private workers
 1. A CPU nodepool with a single E4 1x16 node
@@ -30,7 +30,15 @@ The *terraform* subdirectory in this repo has a sample terraform script which cr
 
 Before running the terraform you will need to edit the [oke_plus_dependencies.tf](terraform/oke_plus_dependencies.tf) file and update the *locals* block to contain vaild values for your tenancy.  Note that if you change the version of k8s for the cluster, you may also need to change the base image OCID of the worker nodes.  In addition, your tenancy may not have GPU resources in all availability domains so you will need to modify your GPU nodepool placement configurations as necessary.
 
-You will also need to make sure that you have a terraform client installed and configured to interact with your OCI tenancy.  Follow the OCI [Terraform Getting Started Guide](https://docs.oracle.com/en-us/iaas/Content/API/SDKDocs/terraformgettingstarted.htm) to prepare.
+Feel free to either modify the terraform to match the GPU resources you want or simply create a cluster from the console with the configuration that you desire.
+
+You will also need to make sure that you have a terraform client installed and configured to interact with your OCI tenancy if you choose to use the sample terraform.  Follow the OCI [Terraform Getting Started Guide](https://docs.oracle.com/en-us/iaas/Content/API/SDKDocs/terraformgettingstarted.htm) to prepare.  Once you have terraform installed and configured, execute the following commands to deploy the OKE cluster with dependencies.
+
+```
+cd terraform
+terraform init
+terraform apply
+```
 
 ## Installing Helm
 
@@ -39,13 +47,13 @@ executing the following steps from the [official helm install
 guide](https://helm.sh/docs/intro/install/) will
 give you a quick setup.
 
-## Installing OCI CLI
+## Installing the OCI CLI
 
 This guide uses OCI CLI for creating a bucket and copying files to that bucket. OCI object storage has an [Amazon S3 Compatibility API](https://docs.oracle.com/en-us/iaas/Content/Object/Tasks/s3compatibleapi.htm), which allows you to use your existing Amazon S3 tools (for example, the AWS CLI).
 
 To install and configure the OCI CLI, please follow the instructions [in this link](https://docs.oracle.com/en-us/iaas/Content/API/SDKDocs/cliinstall.htm).
 
-## Model Repository
+## Building a Model Repository and Deploying it to OCI Object Storage
 
 If you already have a model repository you may use that with this helm
 chart. If you do not have a model repository, you can checkout a local
@@ -75,7 +83,7 @@ Download the example model repository to your system and copy it into the OCI Ob
 oci os object bulk-upload --bucket-name triton-inference-server-repository --prefix "model_repository/" --src-dir ./model_repository
 ```
 
-### OCI Object Storage Repository
+### Configuring values.yaml
 To load the model from the OCI Object Storage using the S3 Compatiblility API, you need to create a customer secret key.
 
 `$USER` below is your user OCID. You can get it in the OCI Web Console by opening the **Profile** menu and click **My Profile**.
@@ -179,7 +187,7 @@ password=prom-operator to login.
 An example Grafana dashboard is available in dashboard.json. Use the
 import function in Grafana to import and view this dashboard.
 
-## Deploy the Inference Server
+## Deploy the Triton Inference Server
 
 Deploy the inference server using the default configuration with the
 following commands.
