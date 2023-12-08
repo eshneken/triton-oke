@@ -20,7 +20,7 @@ You will need to create an OKE cluster with managed nodes that has at least 1 CP
 
 Your GPU nodepool will need to have the k8s label *nvidia.com/gpu = true* set on it to allow for proper scheduling of NVIDIA pods.
 
-The [terraform*\](terraform) subdirectory in this repo has a sample terraform script which creates the following:
+The [terraform](terraform) subdirectory in this repo has a sample terraform script which creates the following:
 1. VCN with all required security lists, routing, and gateways
 1. OKE managed cluster with a public endpoint and private workers
 1. A CPU nodepool with a single E4 1x16 node
