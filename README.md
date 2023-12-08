@@ -11,11 +11,9 @@ Note the following requirements:
 * The helm chart deploys Prometheus and Grafana to collect and display Triton metrics. To use this helm chart you must install Prpmetheus and Grafana in your cluster as described below and your cluster must contain sufficient CPU resources to support these services.
 
 * If you want Triton Server to use GPUs for inferencing, your cluster
-must be configured to contain the desired number of GPU nodes (EC2 G4 instances recommended)
-with support for the NVIDIA driver and CUDA version required by the version
-of the inference server you are using.
+must be configured to contain the desired number of GPU nodes.  You should use the OKE GPU base images which already contain the appropriate CUDA and NVIDIA drivers.
 
-The steps below describe how to set-up a model repository, use helm to launch the inference server, and then send inference requests to the running server. You can access a Grafana endpoint to see real-time metrics reported by the inference server.
+The steps below describe how to create an OKE cluster, set-up a model repository, use helm to launch the inference server, and then send inference requests to the running server. You can access a Grafana endpoint to see real-time metrics reported by the inference server.
 
 ## Create an OKE Cluster
 You will need to create an OKE cluster with managed nodes that has at least 1 CPU node pool and 1 GPU node pool.  The CPU nodepool is required for running the required Prometheus/Grafana stack.
