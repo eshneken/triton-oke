@@ -53,7 +53,7 @@ This guide uses OCI CLI for creating a bucket and copying files to that bucket. 
 
 To install and configure the OCI CLI, please follow the instructions [in this link](https://docs.oracle.com/en-us/iaas/Content/API/SDKDocs/cliinstall.htm).
 
-## Building a Model Repository and Deploying it to OCI Object Storage
+## Build a Model Repository and Deploy it to OCI Object Storage
 
 If you already have a model repository you may use that with this helm
 chart. If you do not have a model repository, you can checkout a local
@@ -83,7 +83,7 @@ Download the example model repository to your system and copy it into the OCI Ob
 oci os object bulk-upload --bucket-name triton-inference-server-repository --prefix "model_repository/" --src-dir ./model_repository
 ```
 
-### Configuring values.yaml
+### Configure values.yaml
 To load the model from the OCI Object Storage using the S3 Compatiblility API, you need to create a customer secret key.
 
 `$USER` below is your user OCID. You can get it in the OCI Web Console by opening the **Profile** menu and click **My Profile**.
@@ -270,7 +270,7 @@ Image 'images/mug.jpg':
     967 (ESPRESSO) = 0.00115997
 ```
 
-## Cleanup
+## Clean Up
 
 Once you've finished using the inference server you should use helm to
 delete the deployment.
