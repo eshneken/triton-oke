@@ -40,14 +40,14 @@ terraform init
 terraform apply
 ```
 
-## Installing Helm
+## Install Helm
 
 If you do not already have Helm installed in your Kubernetes cluster,
 executing the following steps from the [official helm install
 guide](https://helm.sh/docs/intro/install/) will
 give you a quick setup.
 
-## Installing the OCI CLI
+## Install the OCI CLI
 
 This guide uses OCI CLI for creating a bucket and copying files to that bucket. OCI object storage has an [Amazon S3 Compatibility API](https://docs.oracle.com/en-us/iaas/Content/Object/Tasks/s3compatibleapi.htm), which allows you to use your existing Amazon S3 tools (for example, the AWS CLI).
 
