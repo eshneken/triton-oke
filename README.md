@@ -18,7 +18,7 @@ The steps below describe how to create an OKE cluster, set-up a model repository
 ## Create an OKE Cluster
 You will need to create an OKE cluster with managed nodes that has at least 1 CPU node pool and 1 GPU node pool.  The CPU nodepool is required for running the required Prometheus/Grafana stack.
 
-Your GPU nodepool will need to have the k8s label *nvidia.com/gpu = true* set on it to allow for proper scheduling of NVIDIA pods.
+Your GPU nodepool will need to have the k8s label **nvidia.com/gpu = true** set on it to allow for proper scheduling of NVIDIA pods.
 
 The [terraform](terraform) subdirectory in this repo has a sample terraform script which creates the following:
 1. VCN with all required security lists, routing, and gateways
