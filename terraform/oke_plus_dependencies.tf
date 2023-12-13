@@ -310,7 +310,7 @@ resource "oci_containerengine_node_pool" "create_gpu_pool" {
 			"OKEnodePoolName" = "gpu-pool"
 		}
 		node_pool_pod_network_option_details {
-			cni_type = "OCI_VCN_IP_NATIVE"
+			cni_type = "FLANNEL_OVERLAY"
 			pod_subnet_ids = [oci_core_subnet.node_subnet.id]
 		}
 		placement_configs {
@@ -355,7 +355,7 @@ resource "oci_containerengine_node_pool" "create_cpu_pool" {
 			"OKEnodePoolName" = "cpu-pool"
 		}
 		node_pool_pod_network_option_details {
-			cni_type = "OCI_VCN_IP_NATIVE"
+			cni_type = "FLANNEL_OVERLAY"
 			pod_subnet_ids = [oci_core_subnet.node_subnet.id]
 		}
 		placement_configs {
