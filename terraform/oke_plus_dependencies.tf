@@ -1,9 +1,9 @@
 provider "oci" {}
 
 locals {
-  compartment_id = "ocid1.compartment.oc1..aaaaaaaakb5gpfek3psgdckxav3ektknnodqzqz5picqzkdf4xzl34janyya"
+  compartment_id = "ocid1.compartment.oc1...."
   k8s_version    = "v1.27.2"
-  ssh_public_key = "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDOTZ/ts8STt1dlvhtTd5KubTWqZ8enmOF5AnjbWbm0f9Y1E7MFH2uUS0afZk/l+WQnXiFsuFrNc5sqtT5IAYkxpn/nMur6mE6va7feAfi7OP4v6su1TUcwGejsFqqYXFMYG7sdI6z5YVYaDoxbwr3CcAAQf089tK4R9P1RY05eXIIwRDtkn04iO9dG1agISYDgCEx1aGvx2LOAnmlguR+78iQ4TqZVadg6xNIhh0rnpAYf+/avsyNYS7OoBswMnFlfqn0MbwG+ecWHNiGh+a/Bo2SSC/rlCWOtMIbZui1a8Ca7uFYJgg2BBrtlzdLH34TICUJQFnHI1SiX9OIJ4ngL"
+  ssh_public_key = "ssh-rsa ..."
   gpu_node_count = "1"
   cpu_node_count = "1"
 }
@@ -257,7 +257,7 @@ resource "oci_core_security_list" "kubernetes_api_endpoint_sec_list" {
 
 resource "oci_containerengine_cluster" "generated_oci_containerengine_cluster" {
 	cluster_pod_network_options {
-		cni_type = "OCI_VCN_IP_NATIVE"
+		cni_type = "FLANNEL_OVERLAY"
 	}
 	compartment_id = local.compartment_id
 	endpoint_config {
