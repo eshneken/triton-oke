@@ -300,7 +300,7 @@ resource "oci_containerengine_node_pool" "create_gpu_pool" {
 		value = "triton-cluster"
 	}
 	initial_node_labels {
-		key = "nvidia.com/gpu"
+		key = "oci.oraclecloud.com/disable-gpu-device-plugin"
 		value = "true"
 	}
 	kubernetes_version = local.k8s_version
